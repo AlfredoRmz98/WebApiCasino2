@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "M3sXZZ3rfvYaSRDn9NgLa9ByOaTXG2FiEEv4YqJW0E4=",
+  "Source": "WebApiCasino2",
+  "BasePath": "_content/WebApiCasino2",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "WebApiCasino2\\wwwroot",
+      "Source": "WebApiCasino2",
+      "ContentRoot": "C:\\Users\\Aaron Ramirez\\source\\repos\\WebApiCasino2\\WebApiCasino2\\wwwroot\\",
+      "BasePath": "_content/WebApiCasino2",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Aaron Ramirez\\source\\repos\\WebApiCasino2\\WebApiCasino2\\wwwroot\\Participantes.txt",
+      "SourceId": "WebApiCasino2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Aaron Ramirez\\source\\repos\\WebApiCasino2\\WebApiCasino2\\wwwroot\\",
+      "BasePath": "_content/WebApiCasino2",
+      "RelativePath": "Participantes.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Participantes.txt"
+    }
+  ]
+}
