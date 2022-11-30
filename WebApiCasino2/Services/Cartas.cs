@@ -1,15 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace WebApiCasino2.Entidades
+﻿namespace WebApiCasino2.Services
 {
-    public class Baraja
+    public class Cartas
     {
-        [NotMapped]
-        public int Nombre { get; set; }
-        public int Id { get; set; }
-        public string UsuarioId { get; set; }
-        public IdentityUser Usuario { get; set; }
         public int Gallo = 1;
         public int Diablo = 2;
         public int Dama = 3;
@@ -64,9 +56,5 @@ namespace WebApiCasino2.Entidades
         public int Maceta = 52;
         public int Arpa = 53;
         public int Rana = 54;
-        public List<Participante> Participante { get; set; }
-        public List<ParticipanteRifa> ParticipanteRifa { get; set; }
-        public List<Rifa> Rifa { get; set; }
-        public List<Premio> Premio { get; set; }
     }
 }

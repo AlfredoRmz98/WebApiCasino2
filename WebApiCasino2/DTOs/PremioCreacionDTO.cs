@@ -2,6 +2,7 @@
 {
     public class PremioCreacionDTO
     {
+        public int RifasIds { get; set; }
         public string nombre { get; set; }
     }
 }

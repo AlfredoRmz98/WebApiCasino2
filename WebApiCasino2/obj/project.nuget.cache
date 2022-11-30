@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PS5TCmFLe0PZkG1kbQKZUpuX5q5BY/7F3+d04LMogHxBx5PTqJsyAuH863Rt+c+JSqctMaHJJRB9w6C2ZIbwEQ==",
+  "dgSpecHash": "KJvWH4Jp3ITP1SlbTNA12j07dfq1ErPNJUteVC+3i0L/DQ6hONO/UjAdpHCm4fxj+/DE79YL5aKMuVFKyHLokA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Aaron Ramirez\\source\\repos\\WebApiCasino2\\WebApiCasino2\\WebApiCasino2.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,8 @@
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.0\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.0.nupkg.sha512",
+    "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.0\\microsoft.aspnetcore.jsonpatch.6.0.0.nupkg.sha512",
+    "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.0\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.0.nupkg.sha512",
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\microsoft.aspnetcore.server.httpsys\\2.2.6\\microsoft.aspnetcore.server.httpsys.2.2.6.nupkg.sha512",
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
@@ -72,6 +74,8 @@
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\Aaron Ramirez\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

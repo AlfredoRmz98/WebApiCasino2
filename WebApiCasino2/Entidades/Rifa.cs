@@ -10,6 +10,7 @@ namespace WebApiCasino2.Entidades
         public string Nombre { get; set; }
 
         public DateTime? FechaCreacion { get; set; }
+        public List<RifaPremio> RifaPremio { get; set; }
         public List<ParticipanteRifa> ParticipanteRifa { get; set; }
         public List<Baraja> Baraja { get; set; }
     }

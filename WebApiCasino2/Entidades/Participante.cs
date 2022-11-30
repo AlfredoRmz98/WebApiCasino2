@@ -9,6 +9,6 @@ namespace WebApiCasino2.Entidades
         [StringLength(maximumLength: 50, ErrorMessage = "El campo {0} solo puede tener hasta 50 caracteres")]
         public string Nombre { get; set; }
 
-       // public List<ParticipanteRifa> ParticipanteRifa { get; set; }
+        public List<ParticipanteRifa> ParticipanteRifa { get; set; }
     }
 }

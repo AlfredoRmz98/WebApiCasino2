@@ -17,6 +17,8 @@ namespace WebApiCasino2
 
             modelBuilder.Entity<ParticipanteRifa>()
                 .HasKey(al => new { al.ParticipanteId, al.RifaId });
+            modelBuilder.Entity<RifaPremio>()
+                .HasKey(al => new { al.PremioId, al.RifaNombre });
             modelBuilder.Entity<PremioRifa>()
                 .HasKey(al => new { al.RifaId, al.PremioNombre });
         }
@@ -25,6 +27,7 @@ namespace WebApiCasino2
         public DbSet<Participante> Participantes { get; set; }
         public DbSet<Rifa> Rifas { get; set; }
         public DbSet<PremioRifa> PremioRifa { get; set; }
+        public DbSet<RifaPremio> RifaPremio { get; set; }
         public DbSet<Premio> Premios  { get; set; }
 
     }

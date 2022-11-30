@@ -1,11 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
-using WebApiCasino2.Middlewares;
 using WebApiCasino2.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using WebApiCasino2.Filtros;
 using WebApiCasino2.Filtros.WebApiEmpleados.Filtros;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
+using System.Text;
 
 namespace WebApiCasino2
 {
@@ -13,6 +16,7 @@ namespace WebApiCasino2
     {
         public Startup(IConfiguration configuration)
         {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             Configuration = configuration;
         }
         public IConfiguration Configuration { get; }
@@ -23,7 +27,8 @@ namespace WebApiCasino2
             {
                 opciones.Filters.Add(typeof(FiltroDeExcepcion));
             }).AddJsonOptions(x =>
-            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles).AddNewtonsoftJson();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
@@ -36,55 +41,70 @@ namespace WebApiCasino2
             services.AddHostedService<EscribirEnArchivo>();
             services.AddResponseCaching();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opciones => opciones.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(Configuration["keyjwt"])),
+                    ClockSkew = TimeSpan.Zero
+                });
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIAEmpleados", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new String[]{ }
+                    }
+                });
+            });
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+            services.AddAuthorization(opciones =>
+            {
+                opciones.AddPolicy("EsAdmin", politica => politica.RequireClaim("EsAdmin"));
+                opciones.AddPolicy("EsParticipante", politica => politica.RequireClaim("EsParticipante"));
+            });
+            services.AddCors(opciones =>
+            {
+                opciones.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://apirequest.io").AllowAnyMethod().AllowAnyHeader();
+                });
             });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
-            //app.Use(async (context, siguiente) =>
-            //{
-            //    using (var ms = new MemoryStream())
-            //    {
-            //        //Se asigna el body del response en una variable y se le da el valor de memorystream
-            //        var bodyOriginal = context.Response.Body;
-            //        context.Response.Body = ms;
-
-            //        //Permite continuar con la linea
-            //        await siguiente.Invoke();
-
-            //        //Guardamos lo que le respondemos al cliente en el string
-            //        ms.Seek(0, SeekOrigin.Begin);
-            //        string response = new StreamReader(ms).ReadToEnd();
-            //        ms.Seek(0,SeekOrigin.Begin);
-
-            //        //Leemos el stream y lo colocamos como estaba
-            //        context.Response.Body = bodyOriginal;
-
-            //        logger.LogInformation(response);
-            //    }
-            //app.UseMiddleware<ResponseHttpMiddleware>();
-            app.UseResponseHttpMiddleware();
-            //});
-            //app.map("/maping", app =>
-            //{
-            //    app.run(async context =>
-            //    {
-            //        await context.response.writeasync("interceptando las peticiones");
-            //    });
-            //});
-            //  app.Run(async context =>
-            //{
-            //  await context.Response.WriteAsync("Interceptando las peticiones");
-            //});
-
-
-            // Configure the HTTP request pipeline.
+            
+            
             if (env.IsDevelopment())
             {
                 app.UseSwagger();
@@ -93,8 +113,7 @@ namespace WebApiCasino2
             app.UseRouting();
 
             app.UseHttpsRedirection();
-
-            app.UseResponseCaching();
+            app.UseCors();
 
             app.UseAuthorization();
 
